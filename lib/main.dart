@@ -1,7 +1,10 @@
 import 'package:evolution_market/core/initializations/system_config.dart';
+import 'package:evolution_market/layers/presentation/ui/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'layers/presentation/custom_themes/custom_eleveted_button_theme.dart';
 
 import 'layers/presentation/ui/screens/login.dart';
+import 'layers/presentation/ui/screens/profile.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +21,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'EvoMarket',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const Login(),
+      theme: ThemeData(
+        fontFamily: 'OpenSans',
+        primarySwatch: Colors.blue,
+        elevatedButtonTheme: customElevatedButtonTheme(),
+      ),
+      home: const Home(),
     );
   }
 }
