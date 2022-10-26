@@ -1,4 +1,7 @@
+import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+
+import 'home.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -53,6 +56,7 @@ class Profile extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

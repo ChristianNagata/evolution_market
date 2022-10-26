@@ -1,3 +1,5 @@
+import 'package:evolution_market/layers/presentation/ui/screens/profile.dart';
+import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../widgets/product_info_card.dart';
 
@@ -21,33 +23,17 @@ class Home extends StatelessWidget {
             ),
           ),
           SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const Padding(
-                  padding: EdgeInsets.only(left: 36, right: 36, top: 16),
-                  child: ProductInfoCard(),
-                ),
-              ],
+            delegate: SliverChildBuilderDelegate(
+              childCount: 10,
+              (BuildContext context, int index) => const Padding(
+                padding: EdgeInsets.only(left: 36, right: 36, top: 16),
+                child: ProductInfoCard(),
+              ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Meu Perfil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Logout',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }
