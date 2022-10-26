@@ -1,33 +1,34 @@
+import 'package:evolution_market/layers/domain/entities/user_entity.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+UserEntity _user = UserEntity(
+    name: 'John Doe', email: 'johndoe@email.com', insertionDate: 'dd/mm/aaaa');
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
-  final double _profileHeight = 127;
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double avatarRadius = screenWidth / 6;
+    double toolBarHeight = screenWidth / 3 + avatarRadius;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        toolbarHeight: 150 + _profileHeight / 2,
+        toolbarHeight: toolBarHeight,
         flexibleSpace: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            _Background(profileHeight: _profileHeight),
-            Container(
-              height: _profileHeight,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/profile-pic.png'),
-                  fit: BoxFit.fitHeight,
-                  alignment: Alignment.bottomCenter,
-                ),
+            _Background(avatarRadius, toolBarHeight),
+            CircleAvatar(
+              radius: avatarRadius,
+              child: const Icon(
+                Icons.person,
+                size: 56,
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -37,18 +38,24 @@ class Profile extends StatelessWidget {
           children: [
             const SizedBox(height: 56),
             TextFormField(
+              initialValue: _user.name,
+              readOnly: true,
               decoration: const InputDecoration(
                 labelText: 'Nome do Usuário',
               ),
             ),
             const SizedBox(height: 34),
             TextFormField(
+              initialValue: _user.email,
+              readOnly: true,
               decoration: const InputDecoration(
                 labelText: 'E-mail',
               ),
             ),
             const SizedBox(height: 34),
             TextFormField(
+              initialValue: _user.insertionDate,
+              readOnly: true,
               decoration: const InputDecoration(
                 labelText: 'Data de Inserção',
               ),
@@ -62,31 +69,25 @@ class Profile extends StatelessWidget {
 }
 
 class _Background extends StatelessWidget {
-  const _Background({
-    Key? key,
-    required double profileHeight,
-  })  : _profileHeight = profileHeight,
-        super(key: key);
+  const _Background(this.avatarRadius, this.toolBarHeight);
 
-  final double _profileHeight;
+  final double avatarRadius;
+  final double toolBarHeight;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 150,
+          height: toolBarHeight - avatarRadius / 2,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/upper-profile.bg.png'),
               fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
             ),
           ),
         ),
-        Container(
-          height: _profileHeight / 2,
-        ),
+        Container(height: avatarRadius),
       ],
     );
   }

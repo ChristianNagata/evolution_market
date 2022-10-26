@@ -20,4 +20,8 @@ class ProductEntity {
     this.numberOfProducts = 0,
     this.isOnSale = true,
   });
+
+  String get formattedPrice {
+    return 'R\$${price.toStringAsFixed(2)}'.replaceFirst('.', ',');
+  }
 }

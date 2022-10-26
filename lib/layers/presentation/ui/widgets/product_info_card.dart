@@ -11,8 +11,8 @@ class ProductInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeNotifier homeNotifier =
-        Provider.of<HomeNotifier>(context);
+    HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
+    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => homeNotifier.showProductDetails(product),
       child: Card(
@@ -22,7 +22,7 @@ class ProductInfoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: SizedBox(
-          height: 257,
+          height: screenWidth / 1.3,
           child: Column(
             children: [
               Expanded(
@@ -40,22 +40,24 @@ class ProductInfoCard extends StatelessWidget {
               ),
               Expanded(
                 flex: 4,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         product.name,
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                          fontSize: screenWidth / 23,
+                          fontWeight: FontWeight.w700,
+                        ),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         product.description,
-                        style: const TextStyle(
-                          fontSize: 9,
+                        style: TextStyle(
+                          fontSize: screenWidth / 32,
                           fontWeight: FontWeight.w400,
                         ),
                         maxLines: 3,
@@ -65,10 +67,9 @@ class ProductInfoCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'R\$${product.price.toStringAsFixed(2)}'
-                                .replaceFirst('.', ','),
+                            product.formattedPrice,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: screenWidth / 23,
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).primaryColor,
                             ),
@@ -96,6 +97,7 @@ class _Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
+    double screenWidth = MediaQuery.of(context).size.width;
     return Row(
       children: [
         ElevatedButton(
@@ -115,7 +117,7 @@ class _Counter extends StatelessWidget {
         Text(
           product.numberOfProducts.toString(),
           style: TextStyle(
-            fontSize: 16,
+            fontSize: screenWidth / 23,
             fontWeight: FontWeight.w400,
             color: Theme.of(context).primaryColor,
           ),

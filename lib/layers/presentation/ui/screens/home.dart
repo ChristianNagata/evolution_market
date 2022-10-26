@@ -3,10 +3,11 @@ import 'package:evolution_market/layers/presentation/controllers/home_notifier.d
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../widgets/custom_drawer.dart';
 import '../widgets/product_info_card.dart';
 
 List<ProductEntity> products = [
-  ProductEntity(),
+  ProductEntity(isOnSale: false),
   ProductEntity(),
   ProductEntity(),
   ProductEntity(),
@@ -57,69 +58,6 @@ class Home extends StatelessWidget {
   }
 }
 
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
-    return Drawer(
-      child: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(22),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
-              Container(
-                width: 240,
-                height: 179,
-                color: Colors.amber,
-              ),
-              const SizedBox(height: 25),
-              Text(
-                homeNotifier.product.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                homeNotifier.product.description,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'R\$${homeNotifier.product.price.toStringAsFixed(2)}'
-                    .replaceFirst('.', ','),
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _SliverAppBarBg extends StatelessWidget {
   const _SliverAppBarBg({
     Key? key,
@@ -144,7 +82,7 @@ class _SliverAppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: [ 
         const CircleAvatar(
           backgroundColor: Colors.white,
           child: Icon(Icons.shopping_cart),

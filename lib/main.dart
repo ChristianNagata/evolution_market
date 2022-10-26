@@ -2,6 +2,7 @@ import 'package:evolution_market/core/initializations/inject.dart';
 import 'package:evolution_market/core/initializations/system_config.dart';
 import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/navigation_bar_notifier.dart';
+import 'package:evolution_market/layers/presentation/custom_themes/custom_page_transition_theme.dart';
 import 'package:evolution_market/layers/presentation/ui/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EvoMarket',
       theme: ThemeData(
+        pageTransitionsTheme: customPageTransitionTheme(),
         fontFamily: 'OpenSans',
         primarySwatch: Colors.blue,
         elevatedButtonTheme: customElevatedButtonTheme(),
