@@ -9,13 +9,27 @@ class HomeNotifier with ChangeNotifier {
 
   ProductEntity get product => _product;
 
-  void _updateData(product) {
+  void _updateDrawerData(product) {
     _product = product;
     notifyListeners();
   }
 
+  void decrementCounter(ProductEntity product) {
+    if (product.numberOfProducts > 0) {
+      product.numberOfProducts--;
+      notifyListeners();
+    }
+  }
+
+  void incrementCounter(ProductEntity product) {
+    if (product.numberOfProducts < 100) {
+      product.numberOfProducts++;
+      notifyListeners();
+    }
+  }
+
   void showProductDetails(ProductEntity product) {
-    _updateData(product);
+    _updateDrawerData(product);
     _key.currentState!.openDrawer();
   }
 }

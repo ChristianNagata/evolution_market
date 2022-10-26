@@ -5,6 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/product_info_card.dart';
 
+List<ProductEntity> products = [
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+  ProductEntity(),
+];
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -29,12 +42,10 @@ class Home extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: 10,
+              childCount: products.length,
               (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.only(left: 36, right: 36, top: 16),
-                child: ProductInfoCard(
-                  ProductEntity(),
-                ),
+                child: ProductInfoCard(products[index]),
               ),
             ),
           ),

@@ -12,7 +12,7 @@ class ProductInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeNotifier homeNotifier =
-        Provider.of<HomeNotifier>(context, listen: false);
+        Provider.of<HomeNotifier>(context);
     return GestureDetector(
       onTap: () => homeNotifier.showProductDetails(product),
       child: Card(
@@ -34,9 +34,7 @@ class ProductInfoCard extends StatelessWidget {
                         color: Colors.amber,
                       ),
                     ),
-                    product.isOnSale
-                        ? const OnSaleLabel()
-                        : Container(),
+                    product.isOnSale ? const OnSaleLabel() : Container(),
                   ],
                 ),
               ),
@@ -75,7 +73,7 @@ class ProductInfoCard extends StatelessWidget {
                               color: Theme.of(context).primaryColor,
                             ),
                           ),
-                          const _Counter()
+                          _Counter(product)
                         ],
                       ),
                     ],
@@ -90,19 +88,18 @@ class ProductInfoCard extends StatelessWidget {
   }
 }
 
-
-
 class _Counter extends StatelessWidget {
-  const _Counter({
-    Key? key,
-  }) : super(key: key);
+  const _Counter(this.product, {Key? key}) : super(key: key);
+
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
+    HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
     return Row(
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => homeNotifier.decrementCounter(product),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey),
             shape: MaterialStateProperty.all<CircleBorder>(
@@ -116,7 +113,7 @@ class _Counter extends StatelessWidget {
         ),
         const SizedBox(width: 0),
         Text(
-          '0',
+          product.numberOfProducts.toString(),
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
@@ -125,7 +122,7 @@ class _Counter extends StatelessWidget {
         ),
         const SizedBox(width: 0),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => homeNotifier.incrementCounter(product),
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all(Theme.of(context).primaryColor),
