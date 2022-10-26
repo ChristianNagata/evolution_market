@@ -9,6 +9,7 @@ class ProductEntity {
   String name;
   String description;
   double price;
+  int numberOfProducts;
   bool isOnSale;
 
   // TODO: change to required
@@ -16,6 +17,7 @@ class ProductEntity {
     this.name = 'Product Name',
     this.description = _loremIpsum,
     this.price = 23.445666,
+    this.numberOfProducts = 0,
     this.isOnSale = true,
   });
 }

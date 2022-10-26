@@ -1,8 +1,8 @@
 import 'package:evolution_market/layers/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../controllers/home_notifier.dart';
+import 'on_sale_label.dart';
 
 class ProductInfoCard extends StatelessWidget {
   const ProductInfoCard(this.product, {Key? key}) : super(key: key);
@@ -34,21 +34,9 @@ class ProductInfoCard extends StatelessWidget {
                         color: Colors.amber,
                       ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 14),
-                          child: Container(
-                            width: 115,
-                            height: 33,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                        )
-                      ],
-                    )
+                    product.isOnSale
+                        ? const OnSaleLabel()
+                        : Container(),
                   ],
                 ),
               ),
@@ -101,6 +89,8 @@ class ProductInfoCard extends StatelessWidget {
     );
   }
 }
+
+
 
 class _Counter extends StatelessWidget {
   const _Counter({
