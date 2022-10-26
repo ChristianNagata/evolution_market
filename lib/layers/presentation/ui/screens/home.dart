@@ -1,6 +1,8 @@
-import 'package:evolution_market/layers/presentation/ui/screens/profile.dart';
+import 'package:evolution_market/layers/domain/entities/product_entity.dart';
+import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/product_info_card.dart';
 
 class Home extends StatelessWidget {
@@ -8,7 +10,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
     return Scaffold(
+      key: homeNotifier.key,
       body: CustomScrollView(
         slivers: <Widget>[
           const SliverAppBar(
@@ -16,6 +20,7 @@ class Home extends StatelessWidget {
             snap: false,
             floating: false,
             expandedHeight: 163,
+            automaticallyImplyLeading: false,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.only(left: 24, bottom: 40),
               title: _SliverAppBarTitle(),
@@ -25,15 +30,81 @@ class Home extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: 10,
-              (BuildContext context, int index) => const Padding(
-                padding: EdgeInsets.only(left: 36, right: 36, top: 16),
-                child: ProductInfoCard(),
+              (BuildContext context, int index) => Padding(
+                padding: const EdgeInsets.only(left: 36, right: 36, top: 16),
+                child: ProductInfoCard(
+                  ProductEntity(),
+                ),
               ),
             ),
           ),
         ],
       ),
+      drawer: const CustomDrawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
+    return Drawer(
+      child: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.all(22),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+              Container(
+                width: 240,
+                height: 179,
+                color: Colors.amber,
+              ),
+              const SizedBox(height: 25),
+              Text(
+                homeNotifier.product.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 26,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                homeNotifier.product.description,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'R\$${homeNotifier.product.price.toStringAsFixed(2)}'
+                    .replaceFirst('.', ','),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

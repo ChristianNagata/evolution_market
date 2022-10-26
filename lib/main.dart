@@ -1,5 +1,6 @@
 import 'package:evolution_market/core/initializations/inject.dart';
 import 'package:evolution_market/core/initializations/system_config.dart';
+import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/navigation_bar_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ Future<void> main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider<NavigationBarNotifier>(
         create: (_) => GetIt.I.get<NavigationBarNotifier>(),
+      ),
+      ChangeNotifierProvider<HomeNotifier>(
+        create: (_) => GetIt.I.get<HomeNotifier>(),
       ),
     ], child: const MyApp()),
   );

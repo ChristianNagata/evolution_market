@@ -1,44 +1,55 @@
+import 'package:evolution_market/layers/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-const String _loremIpsum =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '
-    'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. '
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+import '../../controllers/home_notifier.dart';
 
 class ProductInfoCard extends StatelessWidget {
-  const ProductInfoCard({
-    Key? key,
-    this.title = 'Product Name',
-    this.description = _loremIpsum,
-    this.price = 9.1234,
-  }) : super(key: key);
+  const ProductInfoCard(this.product, {Key? key}) : super(key: key);
 
-  final String title;
-  final String description;
-  final double price;
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: InkWell(
-        splashColor: Colors.blue.withAlpha(30),
+    HomeNotifier homeNotifier =
+        Provider.of<HomeNotifier>(context, listen: false);
+    return GestureDetector(
+      onTap: () => homeNotifier.showProductDetails(product),
+      child: Card(
+        margin: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: SizedBox(
           height: 257,
           child: Column(
             children: [
               Expanded(
                 flex: 3,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.amber,
-                  ),
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.amber,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, bottom: 14),
+                          child: Container(
+                            width: 115,
+                            height: 33,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
               Expanded(
@@ -50,13 +61,13 @@ class ProductInfoCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        title,
+                        product.name,
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w700),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        description,
+                        product.description,
                         style: const TextStyle(
                           fontSize: 9,
                           fontWeight: FontWeight.w400,
@@ -68,7 +79,7 @@ class ProductInfoCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'R\$${price.toStringAsFixed(2)}'
+                            'R\$${product.price.toStringAsFixed(2)}'
                                 .replaceFirst('.', ','),
                             style: TextStyle(
                               fontSize: 16,
