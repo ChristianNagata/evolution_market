@@ -1,4 +1,6 @@
+import 'package:evolution_market/layers/presentation/controllers/auth_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 const String _content = 'A ação de logout irá desconectar sua conta da '
     'plataforma, tem certeza que deseja prosseguir?';
@@ -17,30 +19,34 @@ class _LogoutDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Dialog(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.fromLTRB(16, 20, 16, 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               _title,
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: screenWidth / 23,
+              ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               _content,
               style: TextStyle(
                 fontWeight: FontWeight.w400,
-                fontSize: 12,
-                color: Color.fromRGBO(161, 165, 183, 1),
+                fontSize: screenWidth / 32,
+                color: const Color.fromRGBO(161, 165, 183, 1),
               ),
             ),
-            SizedBox(height: 16),
-            _Options(),
+            const SizedBox(height: 16),
+            const _Options(),
           ],
         ),
       ),
@@ -55,24 +61,32 @@ class _Options extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthNotifier authNotifier =
+        Provider.of<AuthNotifier>(context, listen: false);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fontSize = screenWidth / 27;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-            onPressed: () {},
-            child: const Text(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
               'Não',
               style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: Colors.blue),
+                fontWeight: FontWeight.w700,
+                fontSize: fontSize,
+                color: Theme.of(context).primaryColor,
+              ),
             )),
         TextButton(
-            onPressed: () {},
-            child: const Text(
+            onPressed: () async => await authNotifier.logout(),
+            child: Text(
               'Sim, desejo sair',
               style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: 14, color: Colors.red),
+                fontWeight: FontWeight.w700,
+                fontSize: fontSize,
+                color: Colors.red,
+              ),
             )),
       ],
     );

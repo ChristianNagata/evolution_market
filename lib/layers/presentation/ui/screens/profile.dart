@@ -14,6 +14,7 @@ class Profile extends StatelessWidget {
     double avatarRadius = screenWidth / 6;
     double toolBarHeight = screenWidth / 3 + avatarRadius;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -32,35 +33,37 @@ class Profile extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 23, right: 23),
-        child: Column(
-          children: [
-            const SizedBox(height: 56),
-            TextFormField(
-              initialValue: _user.name,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'Nome do Usuário',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 23, right: 23),
+          child: Column(
+            children: [
+              const SizedBox(height: 56),
+              TextFormField(
+                initialValue: _user.name,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Nome do Usuário',
+                ),
               ),
-            ),
-            const SizedBox(height: 34),
-            TextFormField(
-              initialValue: _user.email,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'E-mail',
+              const SizedBox(height: 34),
+              TextFormField(
+                initialValue: _user.email,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'E-mail',
+                ),
               ),
-            ),
-            const SizedBox(height: 34),
-            TextFormField(
-              initialValue: _user.insertionDate,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'Data de Inserção',
+              const SizedBox(height: 34),
+              TextFormField(
+                initialValue: _user.insertionDate,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Data de Inserção',
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(),

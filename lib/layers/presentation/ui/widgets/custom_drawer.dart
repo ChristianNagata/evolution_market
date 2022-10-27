@@ -33,11 +33,14 @@ class CustomDrawer extends StatelessWidget {
               const SizedBox(height: 32),
               FractionallySizedBox(
                 widthFactor: 1,
-                child: Container(
+                child: SizedBox(
                   height: screenWidth / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      homeNotifier.product.imagePath,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -52,13 +55,14 @@ class CustomDrawer extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 homeNotifier.product.description,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w400,
+                  color: Theme.of(context).textTheme.bodySmall?.color,
                 ),
               ),
               const SizedBox(height: 24),
               Text(
-                homeNotifier.product.formattedPrice,
+                'R\$${homeNotifier.product.formattedPrice}',
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: screenWidth / 12.5,

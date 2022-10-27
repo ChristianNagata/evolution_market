@@ -7,14 +7,27 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double iconSize = screenWidth / 13;
+    double fontSize = screenWidth / 32;
+
     NavigationBarNotifier navigation =
         Provider.of<NavigationBarNotifier>(context);
     return BottomNavigationBar(
       onTap: (index) => navigation.changeOption(index, context),
       currentIndex: navigation.selectedIndex,
+      backgroundColor: Theme.of(context).backgroundColor,
+      unselectedItemColor: Theme.of(context).unselectedWidgetColor,
+      selectedItemColor: Theme.of(context).primaryColor,
+      // font size
+      selectedFontSize: fontSize,
+      unselectedFontSize: fontSize,
+      // icon theme
+      selectedIconTheme: IconThemeData(size: iconSize),
+      unselectedIconTheme: IconThemeData(size: iconSize),
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.other_houses_rounded),
           label: 'Início',
         ),
         BottomNavigationBarItem(

@@ -28,11 +28,11 @@ class ProductInfoCard extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Stack(
+                  fit: StackFit.expand,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.amber,
-                      ),
+                    Image.network(
+                      product.imagePath,
+                      fit: BoxFit.cover,
                     ),
                     product.isOnSale ? const OnSaleLabel() : Container(),
                   ],
@@ -59,6 +59,7 @@ class ProductInfoCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: screenWidth / 32,
                           fontWeight: FontWeight.w400,
+                          color: Theme.of(context).textTheme.bodySmall?.color,
                         ),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
@@ -67,7 +68,7 @@ class ProductInfoCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            product.formattedPrice,
+                            'R\$${product.formattedPrice}',
                             style: TextStyle(
                               fontSize: screenWidth / 23,
                               fontWeight: FontWeight.w700,
@@ -103,7 +104,9 @@ class _Counter extends StatelessWidget {
         ElevatedButton(
           onPressed: () => homeNotifier.decrementCounter(product),
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.grey),
+            backgroundColor: MaterialStateProperty.all(
+              Theme.of(context).unselectedWidgetColor,
+            ),
             shape: MaterialStateProperty.all<CircleBorder>(
               const CircleBorder(),
             ),
@@ -131,9 +134,7 @@ class _Counter extends StatelessWidget {
             shape: MaterialStateProperty.all<CircleBorder>(
               const CircleBorder(),
             ),
-            minimumSize: MaterialStateProperty.all(
-              const Size(24, 24),
-            ),
+            minimumSize: MaterialStateProperty.all(const Size(24, 24)),
           ),
           child: const Icon(Icons.add),
         ),

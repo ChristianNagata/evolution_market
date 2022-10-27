@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
     ProductNotifier productsNotifier = context.watch<ProductNotifier>();
     return Scaffold(
       key: homeNotifier.key,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
         slivers: <Widget>[
           const SliverAppBar(

@@ -9,7 +9,7 @@ class NavigationBarNotifier with ChangeNotifier {
   int get selectedIndex => _selectedIndex;
 
   void _changeIndex(int index) {
-    _selectedIndex = index;
+    if (index != 2) _selectedIndex = index;
     notifyListeners();
   }
 
