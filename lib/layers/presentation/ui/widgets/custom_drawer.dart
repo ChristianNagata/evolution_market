@@ -58,6 +58,7 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Theme.of(context).textTheme.bodySmall?.color,
+                  height: 2,
                 ),
               ),
               const SizedBox(height: 24),
