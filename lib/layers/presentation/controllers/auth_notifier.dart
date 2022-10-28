@@ -1,12 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:evolution_market/layers/domain/entities/auth_entity.dart';
 import 'package:evolution_market/layers/domain/repositories/auth_repository.dart';
-import 'package:evolution_market/layers/presentation/ui/screens/home.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/credential_error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/error_object.dart';
-import '../ui/screens/login.dart';
 
 enum AuthState { initial, loading, loaded, error }
 

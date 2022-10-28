@@ -3,10 +3,9 @@ import 'package:evolution_market/layers/presentation/controllers/auth_notifier.d
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:provider/provider.dart';
-import '../widgets/credential_error_dialog.dart';
 
 class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();

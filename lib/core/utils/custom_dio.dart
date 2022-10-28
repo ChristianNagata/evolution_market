@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDio {
@@ -25,8 +26,7 @@ class CustomDio {
       RequestInterceptorHandler interceptorHandler) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.get('token');
-    options.headers['Content-Type'] = 'application/json; charset=UTF-8';
-    options.headers['Authorization'] = token;
+    options.headers['Authorization'] = 'Bearer $token';
   }
 
   _onError(DioError e, ErrorInterceptorHandler eHandler) {
@@ -34,8 +34,8 @@ class CustomDio {
   }
 
   _onRespose(Response r, ResponseInterceptorHandler rHandler) {
-    print('########### Response Log');
-    print(r.data);
-    print('########### Response Log');
+    debugPrint('########### Response Log');
+    debugPrint(r.data);
+    debugPrint('########### Response Log');
   }
 }

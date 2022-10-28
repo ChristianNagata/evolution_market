@@ -1,4 +1,3 @@
-import 'package:evolution_market/layers/domain/entities/product_entity.dart';
 import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/product_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';

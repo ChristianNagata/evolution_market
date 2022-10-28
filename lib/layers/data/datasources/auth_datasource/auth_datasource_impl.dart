@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:evolution_market/core/exceptions.dart';
 import 'package:evolution_market/core/utils/custom_dio.dart';
 import 'package:evolution_market/layers/data/datasources/auth_datasource/auth_datasource.dart';
 import 'package:evolution_market/layers/data/models/auth_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
 class AuthDatasourceImpl implements AuthDatasource {
   @override
@@ -13,15 +12,6 @@ class AuthDatasourceImpl implements AuthDatasource {
       final Dio dio = CustomDio().instance;
       const String path = 'https://evolutionsoft.dev.br:7777/auth/login';
 
-      // Map<String, String> headers = {
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      // };
-      //
-      // var response = await http.post(
-      //   Uri.parse(path),
-      //   headers: headers,
-      //   body: jsonEncode(auth.toMap()),
-      // );
       var response = await dio.post(path, data: auth.toMap());
 
       if (response.statusCode == 204) {
@@ -31,7 +21,7 @@ class AuthDatasourceImpl implements AuthDatasource {
         throw Exception();
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       throw SomethingWentWrongException();
     }
   }

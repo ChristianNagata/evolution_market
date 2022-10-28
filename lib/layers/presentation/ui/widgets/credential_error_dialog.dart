@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 const String _title = 'Credenciais inválidas!';
 
-const String _content =
-    'O e-mail ou senha inserida são inválidos, prossiga e tente novamente.';
-
 showCredentialErrorDialog(BuildContext context, String message) => showDialog(
       context: context,
       builder: (_) => _CredentialErrorDialog(message),

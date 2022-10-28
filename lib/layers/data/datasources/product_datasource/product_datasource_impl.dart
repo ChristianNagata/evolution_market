@@ -3,7 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:evolution_market/core/utils/custom_dio.dart';
 import 'package:evolution_market/layers/data/datasources/product_datasource/product_datasource.dart';
 import 'package:evolution_market/layers/data/models/product_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDatasourceImpl implements ProductDatasource {
   final String baseUrl = 'https://evolutionsoft.dev.br:7777';
@@ -12,11 +14,6 @@ class ProductDatasourceImpl implements ProductDatasource {
   Future<ProductModel> getProduct(String id) async {
     Dio dio = CustomDio.withAuthentication().instance;
     String path = '$baseUrl/produtos/$id';
-
-    // final response = await http.get(
-    //   Uri.parse(path),
-    //   headers: {'Authorization': bearer},
-    // );
 
     var response = await dio.get(path);
 
@@ -30,21 +27,49 @@ class ProductDatasourceImpl implements ProductDatasource {
 
   @override
   Future<List<ProductModel>> getProducts(int page, int limit) async {
-    Dio dio = CustomDio.withAuthentication().instance;
-    String path = '$baseUrl/produtos?page=$page&limit=$limit';
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? '';
 
-    // final response = await http.get(
-    //   Uri.parse(path),
-    //   headers: {'Authorization': 'bearer'},
-    // );
+      String path = '$baseUrl/produtos?page=$page&limit=$limit';
 
-    var response = await dio.get(path);
+      Map<String, String> headers = {'Authorization': 'Bearer $token'};
 
-    final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
+      var response = await http.get(Uri.parse(path), headers: headers);
 
-    List<ProductModel> result =
-        parsed.map<ProductModel>((json) => ProductModel.fromMap(json)).toList();
+      final List parsed = json.decode(response.body)['result'] as List;
 
-    return result;
+      List<ProductModel> result = parsed
+          .map<ProductModel>((json) => ProductModel.fromMap(json))
+          .toList();
+
+      return result;
+    } catch (e) {
+      debugPrint(e.toString());
+      throw Exception();
+    }
   }
+
+// @override
+// Future<List<ProductModel>> getProducts(int page, int limit) async {
+//   try {
+//     Dio dio = CustomDio.withAuthentication().instance;
+//     String path = '$baseUrl/produtos?page=$page&limit=$limit';
+//
+//     var response = await dio.get(path);
+//
+//     print(response.statusCode);
+//
+//     final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
+//
+//     List<ProductModel> result = parsed
+//         .map<ProductModel>((json) => ProductModel.fromMap(json))
+//         .toList();
+//
+//     return result;
+//   } catch (e) {
+//     print(e);
+//     throw Exception();
+//   }
+// }
 }
