@@ -4,16 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  bool hidePassword = true;
 
   @override
   Widget build(BuildContext context) {
     AuthNotifier authNotifier = context.watch<AuthNotifier>();
     double screenWidth = MediaQuery.of(context).size.width;
-
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     return KeyboardDismisser(
       gestures: const [GestureType.onTap],
@@ -45,6 +53,7 @@ class Login extends StatelessWidget {
                 const SizedBox(height: 56),
                 TextFormField(
                   controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     labelText: 'E-mail',
                     hintText: 'Insira seu e-mail',
@@ -53,9 +62,18 @@ class Login extends StatelessWidget {
                 const SizedBox(height: 34),
                 TextFormField(
                   controller: passwordController,
-                  decoration: const InputDecoration(
+                  keyboardType: TextInputType.text,
+                  obscureText: hidePassword,
+                  decoration: InputDecoration(
                     labelText: 'Senha',
                     hintText: 'Insira sua senha',
+                    suffixIconColor: Theme.of(context).primaryColor,
+                    suffixIcon: GestureDetector(
+                      onTap: () => setState(() => hidePassword = !hidePassword),
+                      child: hidePassword
+                          ? const Icon(Icons.visibility_off_outlined)
+                          : const Icon(Icons.visibility_outlined),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 47),
@@ -70,11 +88,15 @@ class Login extends StatelessWidget {
                       await authNotifier.login(auth);
                     },
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(const Size(312, 40)),
+                      minimumSize:
+                          MaterialStateProperty.all(const Size(312, 40)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).primaryColor,
                       ),
                     ),
                     child: const Text('Login'),

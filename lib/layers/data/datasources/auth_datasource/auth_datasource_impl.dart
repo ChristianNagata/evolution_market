@@ -11,9 +11,15 @@ class AuthDatasourceImpl implements AuthDatasource {
     final Dio dio = CustomDio().instance;
     const String path = 'http://evolutionsoft.dev.br:7777/auth/login';
 
-    var url = Uri.https('evolutionsoft.dev.br:7777', 'auth/login');
+    Map<String, String> headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
 
-    var response = await http.post(url, body: auth.toMap());
+    var response = await http.post(
+      Uri.parse(path),
+      headers: headers,
+      body: jsonEncode(auth.toMap()),
+    );
 
     print(auth.toMap());
     print('STATUS CODE = ${response.statusCode}');

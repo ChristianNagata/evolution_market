@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         elevatedButtonTheme: customElevatedButtonTheme(),
       ),
-      home: const Home(),
+      home: Login(),
     );
   }
 }
