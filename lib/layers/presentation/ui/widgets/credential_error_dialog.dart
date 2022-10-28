@@ -5,13 +5,14 @@ const String _title = 'Credenciais inválidas!';
 const String _content =
     'O e-mail ou senha inserida são inválidos, prossiga e tente novamente.';
 
-showCredentialErrorDialog(BuildContext context) => showDialog(
+showCredentialErrorDialog(BuildContext context, String message) => showDialog(
       context: context,
-      builder: (_) => const _CredentialErrorDialog(),
+      builder: (_) => _CredentialErrorDialog(message),
     );
 
 class _CredentialErrorDialog extends StatelessWidget {
-  const _CredentialErrorDialog({Key? key}) : super(key: key);
+  const _CredentialErrorDialog(this.message, {Key? key}) : super(key: key);
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _CredentialErrorDialog extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               // TODO: Utilizar erro proveniente da API para mostrar no modal.
-              _content,
+              message,
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: screenWidth / 32,

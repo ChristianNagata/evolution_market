@@ -79,7 +79,10 @@ class _Options extends StatelessWidget {
               ),
             )),
         TextButton(
-            onPressed: () async => await authNotifier.logout(),
+            onPressed: () {
+              authNotifier.logout();
+              Navigator.pop(context);
+            },
             child: Text(
               'Sim, desejo sair',
               style: TextStyle(

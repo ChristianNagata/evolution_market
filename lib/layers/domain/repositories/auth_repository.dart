@@ -1,7 +1,10 @@
+import 'package:dartz/dartz.dart';
+import 'package:evolution_market/core/failures.dart';
+
 import '../entities/auth_entity.dart';
 
 abstract class AuthRepository {
-  Future<void> login(AuthEntity auth);
+  Future<Either<FailureEntity, String>> login(AuthEntity auth);
 
   Future<void> logout();
 }

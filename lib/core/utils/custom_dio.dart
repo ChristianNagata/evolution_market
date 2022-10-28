@@ -25,6 +25,7 @@ class CustomDio {
       RequestInterceptorHandler interceptorHandler) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.get('token');
+    options.headers['Content-Type'] = 'application/json; charset=UTF-8';
     options.headers['Authorization'] = token;
   }
 
