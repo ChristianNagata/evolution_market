@@ -4,6 +4,7 @@ import 'package:evolution_market/layers/presentation/controllers/auth_notifier.d
 import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/navigation_bar_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/product_notifier.dart';
+import 'package:evolution_market/layers/presentation/controllers/user_notifier.dart';
 import 'package:evolution_market/layers/presentation/custom_themes/custom_page_transition_theme.dart';
 import 'package:evolution_market/layers/presentation/ui/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider<AuthNotifier>(
         create: (_) => GetIt.I.get<AuthNotifier>(),
+      ),
+      ChangeNotifierProvider<UserNotifier>(
+        create: (_) => GetIt.I.get<UserNotifier>(),
       ),
       ChangeNotifierProvider<NavigationBarNotifier>(
         create: (_) => GetIt.I.get<NavigationBarNotifier>(),

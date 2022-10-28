@@ -3,7 +3,11 @@ import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_na
 import 'package:flutter/material.dart';
 
 UserEntity _user = UserEntity(
-    name: 'John Doe', email: 'johndoe@email.com', insertionDate: 'dd/mm/aaaa');
+  id: 1,
+  name: 'John Doe',
+  email: 'johndoe@email.com',
+  insertionDate: 'dd/mm/aaaa',
+);
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
