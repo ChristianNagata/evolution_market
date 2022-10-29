@@ -5,20 +5,18 @@ import 'package:evolution_market/layers/data/datasources/auth_datasource/auth_da
 import 'package:evolution_market/layers/data/models/auth_model.dart';
 
 class AuthDatasourceImpl implements AuthDatasource {
+  final String _baseUrl = 'https://evolutionsoft.dev.br:7777';
+
   @override
   Future<String> login(AuthModel auth) async {
     try {
       final Dio dio = CustomDio().instance;
-      const String path = 'https://evolutionsoft.dev.br:7777/auth/login';
+      String path = '$_baseUrl/auth/login';
 
       var response = await dio.post(path, data: auth.toMap());
 
-      if (response.statusCode == 204) {
-        String token = response.headers['authorization']!.first.toString();
-        return token;
-      } else {
-        throw Exception();
-      }
+      String token = response.headers['authorization']!.first.toString();
+      return token;
     } catch (e) {
       throw SomethingWentWrongException();
     }

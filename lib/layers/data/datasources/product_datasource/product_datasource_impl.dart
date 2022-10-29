@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDatasourceImpl implements ProductDatasource {
-  final String baseUrl = 'https://evolutionsoft.dev.br:7777';
+  final String _baseUrl = 'https://evolutionsoft.dev.br:7777';
 
   @override
   Future<List<ProductModel>> getProducts(int page, int limit) async {
@@ -14,7 +14,7 @@ class ProductDatasourceImpl implements ProductDatasource {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString('token')!;
 
-      String path = '$baseUrl/produtos?page=$page&limit=$limit';
+      String path = '$_baseUrl/produtos?page=$page&limit=$limit';
 
       Map<String, String> headers = {'Authorization': 'Bearer $token'};
 

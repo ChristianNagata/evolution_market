@@ -16,6 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final appBarKey = GlobalKey();
+
   @override
   void initState() {
     GetIt.I.get<UserNotifier>().init();
@@ -31,13 +33,14 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
         slivers: <Widget>[
-          const SliverAppBar(
+          SliverAppBar(
+            key: appBarKey,
             pinned: false,
             snap: false,
             floating: false,
             expandedHeight: 163,
             automaticallyImplyLeading: false,
-            flexibleSpace: FlexibleSpaceBar(
+            flexibleSpace: const FlexibleSpaceBar(
               titlePadding: EdgeInsets.only(left: 24, bottom: 40),
               title: _SliverAppBarTitle(),
               background: _SliverAppBarBg(),
@@ -59,10 +62,101 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child: _Pagination(appBarKey: appBarKey),
+          ),
         ],
       ),
       drawer: const CustomDrawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
+    );
+  }
+}
+
+class _Pagination extends StatelessWidget {
+  const _Pagination({
+    Key? key,
+    required this.appBarKey,
+  }) : super(key: key);
+
+  final GlobalKey appBarKey;
+
+  @override
+  Widget build(BuildContext context) {
+    ProductNotifier productNotifier =
+        Provider.of<ProductNotifier>(context, listen: false);
+    return SizedBox(
+      height: 120,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  productNotifier.pageBackward();
+                  Scrollable.ensureVisible(appBarKey.currentState!.context);
+                },
+                icon: const Icon(
+                  Icons.keyboard_arrow_left_rounded,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  productNotifier.pagination(1);
+                  Scrollable.ensureVisible(appBarKey.currentState!.context);
+                },
+                icon: const _PageNumber(1),
+              ),
+              IconButton(
+                onPressed: () {
+                  productNotifier.pagination(2);
+                  Scrollable.ensureVisible(appBarKey.currentState!.context);
+                },
+                icon: const _PageNumber(2),
+              ),
+              IconButton(
+                onPressed: () {
+                  productNotifier.pagination(3);
+                  Scrollable.ensureVisible(appBarKey.currentState!.context);
+                },
+                icon: const _PageNumber(3),
+              ),
+              IconButton(
+                onPressed: productNotifier.pageForward,
+                icon: const Icon(
+                  Icons.keyboard_arrow_right_rounded,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PageNumber extends StatelessWidget {
+  const _PageNumber(
+    this.number, {
+    Key? key,
+  }) : super(key: key);
+
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    ProductNotifier productNotifier =
+        Provider.of<ProductNotifier>(context, listen: true);
+    bool isSelected = productNotifier.pageNumber == number;
+    return Text(
+      number.toString(),
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+        color: isSelected ? Theme.of(context).primaryColor : Colors.black,
+      ),
     );
   }
 }

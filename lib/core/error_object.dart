@@ -35,8 +35,7 @@ class ErrorObject extends Equatable {
       ),
       somethingWentWrongFailure: () => const ErrorObject(
         title: 'Error Code: SOMETHING_WENT_WRONG_FAILURE',
-        message:
-            'Oops, something went wrong, please check your internet connectivity or try again later.',
+        message: 'Ocorreu um erro ao logar, tente novamente mais tarde!',
       ),
       unauthorizedFailure: () => const ErrorObject(
         title: 'Error Code: UNAUTHORIZED_FAILURE',
