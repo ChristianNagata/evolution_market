@@ -12,7 +12,7 @@ class ProductDatasourceImpl implements ProductDatasource {
   Future<List<ProductModel>> getProducts(int page, int limit) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String token = prefs.getString('token')!;
+      String token = prefs.getString('token') ?? '';
 
       String path = '$_baseUrl/produtos?page=$page&limit=$limit';
 
@@ -33,27 +33,4 @@ class ProductDatasourceImpl implements ProductDatasource {
       throw UnauthorizedException();
     }
   }
-
-// @override
-// Future<List<ProductModel>> getProducts(int page, int limit) async {
-//   try {
-//     Dio dio = CustomDio.withAuthentication().instance;
-//     String path = '$baseUrl/produtos?page=$page&limit=$limit';
-//
-//     var response = await dio.get(path);
-//
-//     print(response.statusCode);
-//
-//     final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
-//
-//     List<ProductModel> result = parsed
-//         .map<ProductModel>((json) => ProductModel.fromMap(json))
-//         .toList();
-//
-//     return result;
-//   } catch (e) {
-//     print(e);
-//     throw Exception();
-//   }
-// }
 }

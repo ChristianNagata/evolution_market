@@ -13,6 +13,12 @@ import 'package:provider/provider.dart';
 import 'layers/presentation/custom_themes/custom_elevated_button_theme.dart';
 import 'layers/presentation/ui/screens/login.dart';
 
+///
+///
+/// Author: Christian Nagata
+///
+///
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:evolution_market/layers/domain/entities/user_entity.dart';
 import 'package:evolution_market/layers/presentation/controllers/user_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
