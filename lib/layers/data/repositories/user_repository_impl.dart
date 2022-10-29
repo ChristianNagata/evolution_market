@@ -14,4 +14,12 @@ class UserRepositoryImpl implements UserRepository {
     UserEntity entity = UserModel.toEntity(model);
     return entity;
   }
+
+  @override
+  Future<List<UserEntity>> getUsers() async {
+    List<UserModel> userModels = await _userDatasource.getUsers();
+    List<UserEntity> userEntities =
+        userModels.map((e) => UserModel.toEntity(e)).toList();
+    return userEntities;
+  }
 }

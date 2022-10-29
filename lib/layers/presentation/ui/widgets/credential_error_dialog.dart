@@ -4,11 +4,11 @@ const String _title = 'Credenciais inválidas!';
 
 showCredentialErrorDialog(BuildContext context, String message) => showDialog(
       context: context,
-      builder: (_) => _CredentialErrorDialog(message),
+      builder: (_) => CredentialErrorDialog(message),
     );
 
-class _CredentialErrorDialog extends StatelessWidget {
-  const _CredentialErrorDialog(this.message, {Key? key}) : super(key: key);
+class CredentialErrorDialog extends StatelessWidget {
+  const CredentialErrorDialog(this.message, {Key? key}) : super(key: key);
   final String message;
 
   @override

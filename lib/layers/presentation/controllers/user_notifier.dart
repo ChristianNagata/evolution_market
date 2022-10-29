@@ -17,6 +17,7 @@ class UserNotifier with ChangeNotifier {
   final UserRepository _userRepository;
   late SharedPreferences _prefs;
   UserEntity _data = userTest;
+  List<UserEntity> _users = [userTest];
 
   UserNotifier(this._userRepository) {
     init();
@@ -27,14 +28,19 @@ class UserNotifier with ChangeNotifier {
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     int userId = await _getUserId();
-    print(userId);
     getUserData(userId);
+    notifyListeners();
   }
 
   Future<int> _getUserId() async {
     String email = _prefs.getString('email')!;
     String sub = email.substring(7, 8);
     return int.parse(sub);
+  }
+
+  Future<void> getUsers() async {
+    _users = await _userRepository.getUsers();
+    notifyListeners();
   }
 
   Future<void> getUserData(int id) async {

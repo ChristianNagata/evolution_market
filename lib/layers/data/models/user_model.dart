@@ -14,7 +14,7 @@ class UserModel extends UserEntity {
       id: map['id'] as int,
       name: map['nome'] as String,
       email: map['email'] as String,
-      base64String: map['foto'] as String,
+      base64String: map['foto'] as String?,
       createdAt: DateTime.parse(map['createdAt'].toString()),
     );
   }

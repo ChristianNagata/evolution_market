@@ -20,9 +20,36 @@ class UserDatasourceImpl implements UserDatasource {
 
       var response = await http.get(Uri.parse(path), headers: headers);
 
-      final Map<String, dynamic> parsed = json.decode(response.body) as Map<String, dynamic>;
+      final Map<String, dynamic> parsed =
+          json.decode(response.body) as Map<String, dynamic>;
 
       UserModel result = UserModel.fromMap(parsed);
+
+      return result;
+    } catch (e) {
+      debugPrint(e.toString());
+      throw Exception();
+    }
+  }
+
+  @override
+  Future<List<UserModel>> getUsers() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token')!;
+
+      String path = '$baseUrl/usuarios?page=1&limit=100';
+
+      Map<String, String> headers = {'Authorization': 'Bearer $token'};
+
+      var response = await http.get(Uri.parse(path), headers: headers);
+
+      final List parsed =
+          json.decode(response.body)['result'] as List;
+
+
+      List<UserModel> result = parsed.map((e) => UserModel.fromMap(e)).toList();
+
 
       return result;
     } catch (e) {
