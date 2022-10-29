@@ -25,27 +25,7 @@ class Profile extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             _Background(avatarRadius, toolBarHeight),
-            user.base64String != null
-                ? CircleAvatar(
-                    radius: avatarRadius,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: CircleAvatar(
-                      radius: avatarRadius - 5,
-                      backgroundImage: Image.memory(
-                        base64Decode(user.base64String!),
-                        fit: BoxFit.cover,
-                      ).image,
-                    ),
-                  )
-                : CircleAvatar(
-                    radius: avatarRadius,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: CircleAvatar(
-                      radius: avatarRadius - 5,
-                      backgroundColor: Colors.blueAccent,
-                      child: const Icon(Icons.person, size: 64),
-                    ),
-                  ),
+            _CustomCircleAvatar(radius: avatarRadius),
           ],
         ),
       ),
@@ -109,5 +89,40 @@ class _Background extends StatelessWidget {
         Container(height: avatarRadius),
       ],
     );
+  }
+}
+
+class _CustomCircleAvatar extends StatelessWidget {
+  const _CustomCircleAvatar({
+    Key? key,
+    required this.radius,
+  }) : super(key: key);
+
+  final double radius;
+
+  @override
+  Widget build(BuildContext context) {
+    UserEntity user = context.watch<UserNotifier>().data;
+    return user.base64String != null
+        ? CircleAvatar(
+            radius: radius,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: CircleAvatar(
+              radius: radius - 5,
+              backgroundImage: Image.memory(
+                base64Decode(user.base64String!),
+                fit: BoxFit.cover,
+              ).image,
+            ),
+          )
+        : CircleAvatar(
+            radius: radius,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: CircleAvatar(
+              radius: radius - 5,
+              backgroundColor: Colors.blueAccent,
+              child: const Icon(Icons.person, size: 64),
+            ),
+          );
   }
 }

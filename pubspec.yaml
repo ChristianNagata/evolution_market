@@ -10,6 +10,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.18.2 <3.0.0'
 
+
 dependencies:
   flutter:
     sdk: flutter
@@ -24,7 +25,6 @@ dependencies:
   freezed: ^2.1.0+1
   equatable: ^2.0.5
   intl: ^0.17.0
-  get: ^4.6.5
 
 
 dev_dependencies:
@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.2.0
   freezed_annotation: ^2.2.0
+
 
 flutter:
   uses-material-design: true
