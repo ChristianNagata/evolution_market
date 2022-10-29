@@ -1,7 +1,9 @@
 import 'package:evolution_market/layers/presentation/controllers/home_notifier.dart';
 import 'package:evolution_market/layers/presentation/controllers/product_notifier.dart';
+import 'package:evolution_market/layers/presentation/controllers/user_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import '../widgets/custom_drawer.dart';
 import '../widgets/product_info_card.dart';
@@ -11,6 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetIt.I.get<UserNotifier>();
     HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
     ProductNotifier productsNotifier = context.watch<ProductNotifier>();
     return Scaffold(

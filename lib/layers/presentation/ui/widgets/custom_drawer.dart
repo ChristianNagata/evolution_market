@@ -68,6 +68,7 @@ class CustomDrawer extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                   fontSize: screenWidth / 12.5,
                   fontWeight: FontWeight.w700,
+                  overflow: TextOverflow.fade,
                 ),
               ),
             ],

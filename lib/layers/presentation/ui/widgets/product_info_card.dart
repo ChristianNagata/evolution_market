@@ -73,6 +73,7 @@ class ProductInfoCard extends StatelessWidget {
                               fontSize: screenWidth / 23,
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).primaryColor,
+                              overflow: TextOverflow.fade,
                             ),
                           ),
                           _Counter(product)

@@ -29,7 +29,7 @@ class ProductDatasourceImpl implements ProductDatasource {
   Future<List<ProductModel>> getProducts(int page, int limit) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String token = prefs.getString('token') ?? '';
+      String token = prefs.getString('token')!;
 
       String path = '$baseUrl/produtos?page=$page&limit=$limit';
 

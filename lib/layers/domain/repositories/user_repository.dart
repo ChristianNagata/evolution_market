@@ -1,3 +1,5 @@
+import 'package:evolution_market/layers/domain/entities/user_entity.dart';
+
 abstract class UserRepository {
-  // TODO: methods implementation
+  Future<UserEntity> getUserData(int id);
 }

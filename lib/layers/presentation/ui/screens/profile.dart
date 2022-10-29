@@ -1,19 +1,15 @@
 import 'package:evolution_market/layers/domain/entities/user_entity.dart';
+import 'package:evolution_market/layers/presentation/controllers/user_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-UserEntity _user = UserEntity(
-  id: 1,
-  name: 'John Doe',
-  email: 'johndoe@email.com',
-  insertionDate: 'dd/mm/aaaa',
-);
+import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    UserEntity user = context.watch<UserNotifier>().data;
     double screenWidth = MediaQuery.of(context).size.width;
     double avatarRadius = screenWidth / 6;
     double toolBarHeight = screenWidth / 3 + avatarRadius;
@@ -44,7 +40,7 @@ class Profile extends StatelessWidget {
             children: [
               const SizedBox(height: 56),
               TextFormField(
-                initialValue: _user.name,
+                initialValue: user.name,
                 readOnly: true,
                 decoration: const InputDecoration(
                   labelText: 'Nome do Usuário',
@@ -52,7 +48,7 @@ class Profile extends StatelessWidget {
               ),
               const SizedBox(height: 34),
               TextFormField(
-                initialValue: _user.email,
+                initialValue: user.email,
                 readOnly: true,
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
@@ -60,7 +56,7 @@ class Profile extends StatelessWidget {
               ),
               const SizedBox(height: 34),
               TextFormField(
-                initialValue: _user.insertionDate,
+                initialValue: user.createdAtFormatted,
                 readOnly: true,
                 decoration: const InputDecoration(
                   labelText: 'Data de Inserção',

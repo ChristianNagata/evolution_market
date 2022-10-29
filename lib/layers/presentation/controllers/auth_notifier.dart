@@ -53,6 +53,7 @@ class AuthNotifier with ChangeNotifier {
       (token) async {
         _state = AuthState.loaded;
         await _prefs.setString('token', token);
+        await _prefs.setString('email', auth.email);
         _isAuthenticated = true;
       },
     );
@@ -61,7 +62,8 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    await _prefs.setString('token', '');
+    _prefs.setString('token', '');
+    _prefs.setString('email', '');
     _isAuthenticated = false;
     notifyListeners();
   }

@@ -1,4 +1,6 @@
 
+import '../../models/user_model.dart';
+
 abstract class UserDatasource {
-  // TODO: methods implementation
+  Future<UserModel> getUserData(int id);
 }

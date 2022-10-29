@@ -5,16 +5,27 @@ class UserModel extends UserEntity {
     required super.id,
     required super.name,
     required super.email,
-    required super.insertionDate,
+    required super.imagePath,
+    required super.createdAt,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    // TODO: modify to real data parameter names an types
     return UserModel(
       id: map['id'] as int,
       name: map['nome'] as String,
       email: map['email'] as String,
-      insertionDate: map['insertionDate'] as String,
+      imagePath: map['foto'] as String,
+      createdAt: DateTime.parse(map['createdAt'].toString()),
+    );
+  }
+
+  static UserEntity toEntity(UserModel model) {
+    return UserEntity(
+      id: model.id,
+      name: model.name,
+      email: model.email,
+      imagePath: model.imagePath,
+      createdAt: model.createdAt,
     );
   }
 }

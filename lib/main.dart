@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthNotifier auth = Provider.of<AuthNotifier>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'EvoMarket',
@@ -62,7 +61,10 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         elevatedButtonTheme: customElevatedButtonTheme(),
       ),
-      home: auth.isAuthenticated ? const Home() : const Login(),
+      home: Consumer<AuthNotifier>(
+        builder: (_, auth, __) =>
+            auth.isAuthenticated ? const Home() : const Login(),
+      ),
     );
   }
 }
