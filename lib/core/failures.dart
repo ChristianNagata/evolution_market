@@ -10,4 +10,5 @@ class FailureEntity with _$FailureEntity {
   const factory FailureEntity.noConnectionFailure() = NoConnectionFailure;
   const factory FailureEntity.notFoundFailure() = NotFoundFailure;
   const factory FailureEntity.somethingWentWrongFailure() = SomethingWentWrongFailure;
+  const factory FailureEntity.unauthorizedFailure() = UnauthorizedFailure;
 }

@@ -21,9 +21,4 @@ class AuthRepositoryImpl implements AuthRepository {
       return const Left(SomethingWentWrongFailure());
     }
   }
-
-  @override
-  Future<void> logout() async {
-    await _authDatasource.logout();
-  }
 }

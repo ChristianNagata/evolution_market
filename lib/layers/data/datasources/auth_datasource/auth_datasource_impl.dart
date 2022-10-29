@@ -26,9 +26,4 @@ class AuthDatasourceImpl implements AuthDatasource {
     }
   }
 
-  @override
-  Future<void> logout() async {
-    final Dio dio = CustomDio().instance;
-    const String path = 'https://evolutionsoft.dev.br:7777/auth/logout';
-  }
 }

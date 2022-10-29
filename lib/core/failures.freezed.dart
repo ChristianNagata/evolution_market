@@ -23,6 +23,7 @@ mixin _$FailureEntity {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$FailureEntity {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$FailureEntity {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,7 @@ mixin _$FailureEntity {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +66,7 @@ mixin _$FailureEntity {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +77,7 @@ mixin _$FailureEntity {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,6 +144,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) {
     return serverFailure();
   }
@@ -150,6 +157,7 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) {
     return serverFailure?.call();
   }
@@ -162,6 +170,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -179,6 +188,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) {
     return serverFailure(this);
   }
@@ -192,6 +202,7 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -205,6 +216,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -262,6 +274,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) {
     return dataParsingFailure();
   }
@@ -274,6 +287,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -286,6 +300,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -303,6 +318,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -316,6 +332,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -329,6 +346,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -386,6 +404,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) {
     return noConnectionFailure();
   }
@@ -398,6 +417,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -410,6 +430,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -427,6 +448,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -440,6 +462,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -453,6 +476,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -510,6 +534,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) {
     return notFoundFailure();
   }
@@ -522,6 +547,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -534,6 +560,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -551,6 +578,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -564,6 +592,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -577,6 +606,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -636,6 +666,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     required TResult Function() noConnectionFailure,
     required TResult Function() notFoundFailure,
     required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
   }) {
     return somethingWentWrongFailure();
   }
@@ -648,6 +679,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     TResult? Function()? noConnectionFailure,
     TResult? Function()? notFoundFailure,
     TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
   }) {
     return somethingWentWrongFailure?.call();
   }
@@ -660,6 +692,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     TResult Function()? noConnectionFailure,
     TResult Function()? notFoundFailure,
     TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (somethingWentWrongFailure != null) {
@@ -677,6 +710,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     required TResult Function(NotFoundFailure value) notFoundFailure,
     required TResult Function(SomethingWentWrongFailure value)
         somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
   }) {
     return somethingWentWrongFailure(this);
   }
@@ -690,6 +724,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     TResult? Function(NotFoundFailure value)? notFoundFailure,
     TResult? Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
   }) {
     return somethingWentWrongFailure?.call(this);
   }
@@ -703,6 +738,7 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
     TResult Function(NotFoundFailure value)? notFoundFailure,
     TResult Function(SomethingWentWrongFailure value)?
         somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
     required TResult orElse(),
   }) {
     if (somethingWentWrongFailure != null) {
@@ -715,4 +751,134 @@ class _$SomethingWentWrongFailure extends SomethingWentWrongFailure {
 abstract class SomethingWentWrongFailure extends FailureEntity {
   const factory SomethingWentWrongFailure() = _$SomethingWentWrongFailure;
   const SomethingWentWrongFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$UnauthorizedFailureCopyWith<$Res> {
+  factory _$$UnauthorizedFailureCopyWith(_$UnauthorizedFailure value,
+          $Res Function(_$UnauthorizedFailure) then) =
+      __$$UnauthorizedFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UnauthorizedFailureCopyWithImpl<$Res>
+    extends _$FailureEntityCopyWithImpl<$Res, _$UnauthorizedFailure>
+    implements _$$UnauthorizedFailureCopyWith<$Res> {
+  __$$UnauthorizedFailureCopyWithImpl(
+      _$UnauthorizedFailure _value, $Res Function(_$UnauthorizedFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UnauthorizedFailure extends UnauthorizedFailure {
+  const _$UnauthorizedFailure() : super._();
+
+  @override
+  String toString() {
+    return 'FailureEntity.unauthorizedFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UnauthorizedFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() somethingWentWrongFailure,
+    required TResult Function() unauthorizedFailure,
+  }) {
+    return unauthorizedFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? somethingWentWrongFailure,
+    TResult? Function()? unauthorizedFailure,
+  }) {
+    return unauthorizedFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? somethingWentWrongFailure,
+    TResult Function()? unauthorizedFailure,
+    required TResult orElse(),
+  }) {
+    if (unauthorizedFailure != null) {
+      return unauthorizedFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(SomethingWentWrongFailure value)
+        somethingWentWrongFailure,
+    required TResult Function(UnauthorizedFailure value) unauthorizedFailure,
+  }) {
+    return unauthorizedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(SomethingWentWrongFailure value)?
+        somethingWentWrongFailure,
+    TResult? Function(UnauthorizedFailure value)? unauthorizedFailure,
+  }) {
+    return unauthorizedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(SomethingWentWrongFailure value)?
+        somethingWentWrongFailure,
+    TResult Function(UnauthorizedFailure value)? unauthorizedFailure,
+    required TResult orElse(),
+  }) {
+    if (unauthorizedFailure != null) {
+      return unauthorizedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnauthorizedFailure extends FailureEntity {
+  const factory UnauthorizedFailure() = _$UnauthorizedFailure;
+  const UnauthorizedFailure._() : super._();
 }

@@ -20,6 +20,9 @@ Future<void> main() async {
 
   await SystemConfig.init();
 
+  await GetIt.I.get<ProductNotifier>().init();
+  await GetIt.I.get<AuthNotifier>().init();
+
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider<ProductNotifier>(

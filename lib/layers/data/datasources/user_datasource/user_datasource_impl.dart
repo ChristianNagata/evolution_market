@@ -22,8 +22,6 @@ class UserDatasourceImpl implements UserDatasource {
 
       final Map<String, dynamic> parsed = json.decode(response.body) as Map<String, dynamic>;
 
-      parsed.forEach((key, value) => print('$key : $value'));
-
       UserModel result = UserModel.fromMap(parsed);
 
       return result;
