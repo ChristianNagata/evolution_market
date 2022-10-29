@@ -22,6 +22,7 @@ Future<void> main() async {
 
   await GetIt.I.get<ProductNotifier>().init();
   await GetIt.I.get<AuthNotifier>().init();
+  await GetIt.I.get<HomeNotifier>().init();
 
   runApp(
     MultiProvider(providers: [

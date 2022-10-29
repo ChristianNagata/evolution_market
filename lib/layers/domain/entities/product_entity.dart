@@ -2,7 +2,7 @@ class ProductEntity {
   String name;
   String description;
   String imagePath;
-  String formattedPrice;
+  String price;
   int numberOfProducts;
   bool isOnSale;
 
@@ -10,8 +10,10 @@ class ProductEntity {
     required this.name,
     required this.description,
     required this.imagePath,
-    required this.formattedPrice,
+    required this.price,
     required this.numberOfProducts,
     required this.isOnSale,
   });
+
+  String get formattedPrice => price.replaceFirst('.', ',');
 }

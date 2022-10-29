@@ -3,7 +3,6 @@ import 'package:evolution_market/core/exceptions.dart';
 import 'package:evolution_market/core/utils/custom_dio.dart';
 import 'package:evolution_market/layers/data/datasources/auth_datasource/auth_datasource.dart';
 import 'package:evolution_market/layers/data/models/auth_model.dart';
-import 'package:flutter/material.dart';
 
 class AuthDatasourceImpl implements AuthDatasource {
   @override
@@ -21,9 +20,7 @@ class AuthDatasourceImpl implements AuthDatasource {
         throw Exception();
       }
     } catch (e) {
-      debugPrint(e.toString());
       throw SomethingWentWrongException();
     }
   }
-
 }

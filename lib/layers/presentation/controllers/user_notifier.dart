@@ -4,10 +4,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/user_entity.dart';
 
-UserEntity user = UserEntity(
+// TODO: remove
+UserEntity userTest = UserEntity(
   id: 1,
-  name: 'name',
-  email: 'email',
+  name: 'Usuário4',
+  email: 'usuário4@email.com',
   imagePath: '',
   createdAt: DateTime.parse('2022-10-24T17:55:56.000Z'),
 );
@@ -15,17 +16,18 @@ UserEntity user = UserEntity(
 class UserNotifier with ChangeNotifier {
   final UserRepository _userRepository;
   late SharedPreferences _prefs;
-  UserEntity _data = user;
+  UserEntity _data = userTest;
 
   UserNotifier(this._userRepository) {
-    _initConfig();
+    init();
   }
 
   UserEntity get data => _data;
 
-  Future<void> _initConfig() async {
+  Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     int userId = await _getUserId();
+    print(userId);
     getUserData(userId);
   }
 

@@ -8,12 +8,22 @@ import 'package:provider/provider.dart';
 import '../widgets/custom_drawer.dart';
 import '../widgets/product_info_card.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    GetIt.I.get<UserNotifier>().init();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    GetIt.I.get<UserNotifier>();
     HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
     ProductNotifier productsNotifier = context.watch<ProductNotifier>();
     return Scaffold(
@@ -33,6 +43,13 @@ class Home extends StatelessWidget {
               background: _SliverAppBarBg(),
             ),
           ),
+          if (productsNotifier.state == ProductsState.loading)
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 120,
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: productsNotifier.products.length,

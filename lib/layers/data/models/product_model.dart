@@ -5,7 +5,7 @@ class ProductModel extends ProductEntity {
     required super.name,
     required super.description,
     required super.imagePath,
-    required super.formattedPrice,
+    required super.price,
     required super.numberOfProducts,
     required super.isOnSale,
   });
@@ -15,7 +15,7 @@ class ProductModel extends ProductEntity {
       name: map['nome'] as String,
       description: map['descricao'] as String,
       imagePath: map['foto'] as String,
-      formattedPrice: map['preco'] as String,
+      price: map['preco'] as String,
       numberOfProducts: 0,
       isOnSale: map['promocao'] as bool,
     );
@@ -26,7 +26,7 @@ class ProductModel extends ProductEntity {
       name: name,
       description: description,
       imagePath: imagePath,
-      formattedPrice: formattedPrice,
+      price: price,
       numberOfProducts: numberOfProducts,
       isOnSale: isOnSale,
     );

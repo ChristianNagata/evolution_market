@@ -13,11 +13,18 @@ class NavigationBarNotifier with ChangeNotifier {
     notifyListeners();
   }
 
+  void reset() {
+    _selectedIndex = 0;
+    notifyListeners();
+  }
+
   void changeOption(int index, BuildContext context) {
-    _changeIndex(index);
-    if (index == 0) _navigate(const Home(), context);
-    if (index == 1) _navigate(const Profile(), context);
-    if (index == 2) showLogoutDialog(context);
+    if (index != selectedIndex) {
+      _changeIndex(index);
+      if (index == 0) _navigate(const Home(), context);
+      if (index == 1) _navigate(const Profile(), context);
+      if (index == 2) showLogoutDialog(context);
+    }
   }
 
   void _navigate(Widget page, BuildContext context) {

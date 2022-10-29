@@ -2,12 +2,20 @@ import 'package:evolution_market/layers/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 
 class HomeNotifier with ChangeNotifier {
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
+  late GlobalKey<ScaffoldState> _key;
   late ProductEntity _product;
 
   GlobalKey<ScaffoldState> get key => _key;
 
+  HomeNotifier() {
+    init();
+  }
+
   ProductEntity get product => _product;
+
+  Future<void> init() async {
+    _key = GlobalKey();
+  }
 
   void _updateDrawerData(product) {
     _product = product;

@@ -32,11 +32,11 @@ class Inject {
     // usecases
     // ---
     // controllers
-    getIt.registerLazySingleton<ProductNotifier>(() => ProductNotifier(getIt()));
-    getIt.registerSingleton<AuthNotifier>(AuthNotifier(getIt()));
-    getIt.registerLazySingleton<UserNotifier>(() => UserNotifier(getIt()));
-
-    getIt.registerSingleton<NavigationBarNotifier>(NavigationBarNotifier());
     getIt.registerSingleton<HomeNotifier>(HomeNotifier());
+    getIt.registerSingleton<NavigationBarNotifier>(NavigationBarNotifier());
+
+    getIt.registerLazySingleton<ProductNotifier>(() => ProductNotifier(getIt()));
+    getIt.registerSingleton<AuthNotifier>(AuthNotifier(getIt(), getIt(), getIt()));
+    getIt.registerLazySingleton<UserNotifier>(() => UserNotifier(getIt()));
   }
 }
