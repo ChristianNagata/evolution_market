@@ -100,11 +100,13 @@ class _Counter extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeNotifier homeNotifier = Provider.of<HomeNotifier>(context);
     double screenWidth = MediaQuery.of(context).size.width;
+    double minimumSize = screenWidth / 15;
     return Row(
       children: [
         ElevatedButton(
           onPressed: () => homeNotifier.decrementCounter(product),
           style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0),
             backgroundColor: MaterialStateProperty.all(
               Theme.of(context).unselectedWidgetColor,
             ),
@@ -112,12 +114,12 @@ class _Counter extends StatelessWidget {
               const CircleBorder(),
             ),
             minimumSize: MaterialStateProperty.all(
-              const Size(24, 24),
+              Size(minimumSize, minimumSize),
             ),
           ),
-          child: const Icon(Icons.remove),
+          child: Icon(Icons.remove, size: minimumSize - 6),
         ),
-        const SizedBox(width: 0),
+        const SizedBox(width: 4),
         Text(
           product.numberOfProducts.toString(),
           style: TextStyle(
@@ -126,18 +128,21 @@ class _Counter extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
         ),
-        const SizedBox(width: 0),
+        const SizedBox(width: 4),
         ElevatedButton(
           onPressed: () => homeNotifier.incrementCounter(product),
           style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0),
             backgroundColor:
                 MaterialStateProperty.all(Theme.of(context).primaryColor),
             shape: MaterialStateProperty.all<CircleBorder>(
               const CircleBorder(),
             ),
-            minimumSize: MaterialStateProperty.all(const Size(24, 24)),
+            minimumSize: MaterialStateProperty.all(
+              Size(minimumSize, minimumSize),
+            ),
           ),
-          child: const Icon(Icons.add),
+          child: Icon(Icons.add, size: minimumSize - 6),
         ),
       ],
     );

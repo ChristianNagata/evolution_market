@@ -9,7 +9,7 @@ UserEntity userTest = UserEntity(
   id: 1,
   name: 'Usuário4',
   email: 'usuário4@email.com',
-  imagePath: '',
+  base64String: '',
   createdAt: DateTime.parse('2022-10-24T17:55:56.000Z'),
 );
 

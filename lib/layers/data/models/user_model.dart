@@ -5,7 +5,7 @@ class UserModel extends UserEntity {
     required super.id,
     required super.name,
     required super.email,
-    required super.imagePath,
+    required super.base64String,
     required super.createdAt,
   });
 
@@ -14,7 +14,7 @@ class UserModel extends UserEntity {
       id: map['id'] as int,
       name: map['nome'] as String,
       email: map['email'] as String,
-      imagePath: map['foto'] as String,
+      base64String: map['foto'] as String,
       createdAt: DateTime.parse(map['createdAt'].toString()),
     );
   }
@@ -24,7 +24,7 @@ class UserModel extends UserEntity {
       id: model.id,
       name: model.name,
       email: model.email,
-      imagePath: model.imagePath,
+      base64String: model.base64String,
       createdAt: model.createdAt,
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:evolution_market/layers/domain/entities/user_entity.dart';
 import 'package:evolution_market/layers/presentation/controllers/user_notifier.dart';
 import 'package:evolution_market/layers/presentation/ui/widgets/custom_bottom_navigation_bar.dart';
@@ -23,13 +25,27 @@ class Profile extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             _Background(avatarRadius, toolBarHeight),
-            CircleAvatar(
-              radius: avatarRadius,
-              child: const Icon(
-                Icons.person,
-                size: 56,
-              ),
-            )
+            user.base64String != null
+                ? CircleAvatar(
+                    radius: avatarRadius,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: CircleAvatar(
+                      radius: avatarRadius - 5,
+                      backgroundImage: Image.memory(
+                        base64Decode(user.base64String!),
+                        fit: BoxFit.cover,
+                      ).image,
+                    ),
+                  )
+                : CircleAvatar(
+                    radius: avatarRadius,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: CircleAvatar(
+                      radius: avatarRadius - 5,
+                      backgroundColor: Colors.blueAccent,
+                      child: const Icon(Icons.person, size: 64),
+                    ),
+                  ),
           ],
         ),
       ),
